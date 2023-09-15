@@ -1,0 +1,24 @@
+pipeline{
+
+        agent {
+                label "aj-slave"
+                }
+                stages{
+                        stage ("Pull the code latest from SCM"){
+                                steps {
+                                        git branch: 'main', url: 'https://github.com/ajay-devop/AWS-Code-pipeline.git'
+                                        }
+                        }
+                        stage (" Build the code "){
+                                steps {
+					sh 'sudo mvn dependency:purge-local-repository'
+                                        sh 'sudo mvn clean package'
+                                        }
+                        }
+			stage ("run java code on terminal") {
+                                steps {
+                                       sh 'java -cp target/helloworld-1.1.jar com.coveros.demo.helloworld.HelloWorld'
+				}
+			}
+              }
+	}

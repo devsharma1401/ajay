@@ -1,12 +1,12 @@
 pipeline{
 
         agent {
-                label "aj-slave"
+                label "slave-1"
                 }
                 stages{
                         stage ("Pull the code latest from SCM"){
                                 steps {
-                                        git branch: 'main', url: 'https://github.com/ajay-devop/AWS-Code-pipeline.git'
+                                        git branch: 'main', url: 'https://github.com/devsharma1401/ajay.git'
                                         }
                         }
                         stage (" Build the code "){
